@@ -2,8 +2,8 @@
 //  CardMatchingGame.m
 //  Matchismo
 //
-//  Created by Jarett Roman on 7/21/13.
-//  Copyright (c) 2013 Jarett Roman. All rights reserved.
+//  Created by Uboa on 7/21/13.
+//  Copyright (c) 2013 Uboa. All rights reserved.
 //
 
 #import "CardMatchingGame.h"
