@@ -12,6 +12,7 @@
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *resultsLabel;
 @property (nonatomic) int flipCount;
 //@property (strong, nonatomic) Deck *deck;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
@@ -50,9 +51,16 @@
         cardButton.selected = card.isFaceUp;
         cardButton.enabled = !card.isUnplayable;
         cardButton.alpha = card.unplayable ? 0.3 : 1.0;
+        /*if (cardButton.selected) {
+            self.resultsLabel.text = [NSString stringWithFormat:@"%@", [cardButton currentTitle]];
+        }*/
+        //self.resultsLabel.text = [NSString stringWithFormat:@"%@", [cardButton currentTitle]];
+        //self.resultsLabel.text = cardButton.selected ? card.contents : @"None selected";
+        //self.resultsLabel.text = [NSString stringWithFormat:@"%@",];
         
     }
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+    //self.resultsLabel.text = [NSString stringWithFormat:@""];
 }
 
 
@@ -69,6 +77,11 @@
 {
     [self.game flipCardAtIndex:[self.cardButtons indexOfObject:sender]];
     //sender.selected = !sender.isSelected;
+    if ([self.game cardAtIndex:[self.cardButtons indexOfObject:sender]].isFaceUp) {
+        self.resultsLabel.text = [NSString stringWithFormat: @"Flipped %@!", [self.game cardAtIndex:[self.cardButtons indexOfObject:sender]].contents];
+    }
+    
+    
     self.flipCount++;
     [self updateUI];
     //[sender setTitle:[[self.deck drawRandomCard] contents] forState:UIControlStateSelected];
